@@ -17,7 +17,7 @@
 		<%
 			from os import listdir
 			from os.path import isfile, join
-			filepath = '/root/files'
+			filepath = bottle_home+'files'
 			onlyfiles = [f for f in listdir(filepath) if isfile(join(filepath, f))]
 		%>
 		% for file in onlyfiles:
