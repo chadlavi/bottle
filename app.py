@@ -5,7 +5,7 @@ from bottle import route, run, template, get, post, request, static_file, error,
 # route to index
 @route('/')
 def index():
-    return template('index', bottle_home=bottle_home)
+    return template('app', bottle_home=bottle_home, title="Images", meta="shhh.")
 
 # route for css
 @get('/css/<file>')
@@ -15,8 +15,13 @@ def returnstyles(file):
 # upload file
 @post('/upload')
 def do_upload():
-    upload     = request.files.get('upload')
+    import hashlib
+    import time
+    hash = hashlib.sha1()
+    hash.update(str(time.time()))
+    upload = request.files.get('upload')
     name, ext = os.path.splitext(upload.filename)
+    upload.filename = hash.hexdigest()[:10] + ext
     upload.save(bottle_home+'files') # appends upload.filename automatically
     redirect('/')
 
