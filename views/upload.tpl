@@ -13,12 +13,12 @@
 
 <body>
 	<h1>Upload</h1>
-	<div>
+	<div class="upload">
 		<form action="/upload" method="post" enctype="multipart/form-data">
-			Select a file: <input type="file" name="upload" />
-			<input type="submit" value="Start upload" />
+			<input type="file" id="file" name="upload" onchange="form.submit()" />
+			<label for="file">Choose File</label>
 		</form>
-		<p><a href="/">Home</a></p>
+		<p><a href="/">Cancel</a></p>
 	</div>
 </body>
 </html>

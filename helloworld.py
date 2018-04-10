@@ -75,6 +75,11 @@ def do_upload():
     upload.save(bottle_home+'files') # appends upload.filename automatically
     redirect('/')
 
+@post('/static/<name>/delete')
+def recipe_delete( name="Mystery Recipe" ):
+	os.remove(bottle_home+'files/'+name)
+	redirect('/')	
+
 # route for serving a static file from a given directory
 @route('/static/<filename>')
 def server_static(filename):
@@ -87,4 +92,4 @@ def error404(error):
 # or can redirect:
 #    redirect('/')
 
-run(host='', port=8080)
+run(reload=True, host='', port=8080)
